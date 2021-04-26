@@ -12,12 +12,9 @@ let generated = {
 function showSymbols(picked, style) {
 	let node = document.querySelector("aside");
 	let count = picked.length;
-	node.innerHTML = `<p>Generated ${count} cards with ${count} symbols:</p>`;
+	//node.innerHTML = `<p>Generated ${count} cards with ${count} symbols:</p>`;
 	picked.map(s => build.symbol(s, style)).forEach(s => node.appendChild(s));
 
-	let print = document.createElement("p");
-	print.textContent = `Symbols were picked randomly from a large set of ${symbols.all.length} emoji, feel free to re-generate some new. You can also print this page; it is printer-friendly and only the relevant content will get printed.`;
-	node.appendChild(print);
 }
 
 function shuffle(arr) {
@@ -57,9 +54,6 @@ async function init() {
 	const n = document.querySelector("[name=n]");
 
 	const style = document.querySelector("[name=style]");
-	style.addEventListener("change", e => {
-		go(Number(n.value), style.value);
-	});
 
 	const form = document.querySelector("form");
 	form.addEventListener("submit", e => {
@@ -68,7 +62,7 @@ async function init() {
 		generated.symbols = null;
 		generated.cards = null;
 
-		go(Number(n.value), style.value);
+		go(Number("7"), "twitter");
 	});
 }
 
