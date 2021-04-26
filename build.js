@@ -86,6 +86,8 @@ function card(card, symbols, style) {
 
 export function cards(cards, symbols, style) {
 	let node = document.createDocumentFragment();
-	cards.map(c => card(c, symbols, style)).forEach(c => node.appendChild(c));
+	cards = cards.map(c => card(c, symbols, style));
+	let selectedCards = cards.slice(0,2);
+	selectedCards.forEach(c => node.appendChild(c));
 	return node;
 }

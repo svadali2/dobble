@@ -12,7 +12,6 @@ let generated = {
 function showSymbols(picked, style) {
 	let node = document.querySelector("aside");
 	let count = picked.length;
-	//node.innerHTML = `<p>Generated ${count} cards with ${count} symbols:</p>`;
 	picked.map(s => build.symbol(s, style)).forEach(s => node.appendChild(s));
 
 }
@@ -40,20 +39,15 @@ function go(n, style) {
 		generated.symbols = pickSymbols(generated.cards.length);
 	}
 
-	showSymbols(generated.symbols, style);
-
 	let parent = document.querySelector("main");
 	parent.innerHTML = "";
-	parent.appendChild(build.cards(generated.cards, generated.symbols, style));
+	let allCards = build.cards(generated.cards, generated.symbols, style);
+	parent.appendChild(allCards);
 }
 
 async function init() {
 	document.body.style.setProperty("--radius", RADIUS);
 	await symbols.init();
-
-	const n = document.querySelector("[name=n]");
-
-	const style = document.querySelector("[name=style]");
 
 	const form = document.querySelector("form");
 	form.addEventListener("submit", e => {
